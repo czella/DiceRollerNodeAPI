@@ -9,26 +9,15 @@ const pool = new Pool({
 });
 
 const getUnits = async (request, response) => {
-  // pool.query('SELECT * FROM "Units" ORDER BY id ASC', (error, results) => {
-  //   if (error) {
-  //     throw error
-  //   }
-  //   response.status(200).json(results.rows)
-  // })
   const result = await Unit.findAll({});
   return await response.status(200).json(result);
 }
 
 const getUnitTypes = async (request, response) => {
-  // pool.query('SELECT * FROM "Units" ORDER BY id ASC', (error, results) => {
-  //   if (error) {
-  //     throw error
-  //   }
-  //   response.status(200).json(results.rows)
-  // })
   const result = await UnitType.findAll({
-      include: [ {model: Unit, as: 'units'} ],
-      raw: false // returns result-set as sequelize object...
+      include: [ {model: Unit, as: 'units', order: "createdAt ASC"} ],
+      raw: false,
+      // order: [[{model: Unit, as: "units"}, 'createdAt', 'desc']]
   });
   return response.status(200).json(result);
 }
