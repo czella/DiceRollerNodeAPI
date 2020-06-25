@@ -1,16 +1,8 @@
-const Pool = require('pg').Pool
 const { UnitType, Unit } = require('./models');
-const pool = new Pool({
-  user: 'laci',
-    host: 'localhost',
-  database: 'laci',
-  password: 'lacika',
-  port: 5432,
-});
 
 const getUnits = async (request, response) => {
   const result = await Unit.findAll({});
-  return await response.status(200).json(result);
+  return result;
 }
 
 const getUnitTypes = async (request, response) => {

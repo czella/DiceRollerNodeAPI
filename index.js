@@ -1,9 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const queries = require('./queries');
 const RollService = require('./services/RollService').RollService;
+const UnitService = require('./services/UnitService').UnitService;
+const UnitTypeService = require('./services/UnitTypeService').UnitTypeService;
 const rollService = new RollService();
+const unitService = new UnitService();
+const unitTypeService = new UnitTypeService();
 const app = express();
 const port = 8080;
 
@@ -19,12 +22,12 @@ app.get('/test', (request, response) => {
   return  response.status(200).json({test: 'everything fine'});
 });
 
-app.get('/units', (request, response) => {
- return (queries.getUnits(request, response));
+app.get('/units',async (request, response) => {
+ return response.status(200).json(await unitService.getUnits());
 })
 
-app.get('/unittypes', (request, response) => {
- return (queries.getUnitTypes(request, response));
+app.get('/unittypes',async (request, response) => {
+  return response.status(200).json(await unitTypeService.getUnitTypes());
 })
 
 app.post('/roll/combined', (request, response) => {
