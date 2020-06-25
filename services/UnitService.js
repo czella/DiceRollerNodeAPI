@@ -1,8 +1,9 @@
-const { Unit } = require('../models');
-
 class UnitService {
+  constructor(Unit) {
+    this.Unit = Unit;
+  }
   async getUnits(){
-    return Unit.findAll({});
+    return this.Unit.findAll({});
   }
 }
 

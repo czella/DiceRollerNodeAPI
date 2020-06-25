@@ -14,12 +14,8 @@ describe('/GET smoketest', () => {
     chai.request(server)
       .get('/test')
       .end((err, res) => {
-        console.log(err);
-        console.log(res);
         res.should.have.status(200);
         res.body.should.be.a('object');
-        console.log(res.body.test, '..............xx.x................xx.x..x');
-        // res.body.length.should.be.eql(0);
         done();
       });
   });
@@ -51,8 +47,6 @@ describe('/POST roll', () => {
       .post('/roll/combined')
       .send(units)
       .end((err, res) => {
-        console.log(err);
-        console.log(res);
         res.should.have.status(200);
         res.body.should.be.a('array');
         res.body.length.should.be.eql(units.length);

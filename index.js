@@ -1,14 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const RollService = require('./services/RollService').RollService;
-const UnitService = require('./services/UnitService').UnitService;
-const UnitTypeService = require('./services/UnitTypeService').UnitTypeService;
-const rollService = new RollService();
-const unitService = new UnitService();
-const unitTypeService = new UnitTypeService();
+const helmet = require('helmet');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
+const {getRoutes} = require('./routers/index');
 const app = express();
 const port = 8080;
+
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://czella.eu.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'https://diceroller',
+  issuer: 'https://czella.eu.auth0.com/',
+  algorithms: ['RS256']
+});
 
 app.use(bodyParser.json());
 app.use(
@@ -18,23 +28,9 @@ app.use(
 );
 app.use(cors());
 
-app.get('/test', (request, response) => {
-  return  response.status(200).json({test: 'everything fine'});
-});
+app.use(helmet());
 
-app.get('/units',async (request, response) => {
- return response.status(200).json(await unitService.getUnits());
-})
-
-app.get('/unittypes',async (request, response) => {
-  return response.status(200).json(await unitTypeService.getUnitTypes());
-})
-
-app.post('/roll/combined', (request, response) => {
-  const units = request.body;
-  const results = rollService.rollForUnits(units);
-  return response.status(200).json(results);
-});
+getRoutes(app, jwtCheck);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
