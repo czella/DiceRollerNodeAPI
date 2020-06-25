@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const queries = require('./queries');
-const rollService = require('./rollService');
+const RollService = require('./services/RollService').RollService;
+const rollService = new RollService();
 const app = express();
 const port = 8080;
 
@@ -14,6 +15,10 @@ app.use(
 );
 app.use(cors());
 
+app.get('/test', (request, response) => {
+  return  response.status(200).json({test: 'everything fine'});
+});
+
 app.get('/units', (request, response) => {
  return (queries.getUnits(request, response));
 })
@@ -23,9 +28,13 @@ app.get('/unittypes', (request, response) => {
 })
 
 app.post('/roll/combined', (request, response) => {
-  return rollService.rollForUnits(request.body, response);
+  const units = request.body;
+  const results = rollService.rollForUnits(units);
+  return response.status(200).json(results);
 });
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
+module.exports = app;

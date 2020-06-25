@@ -23,13 +23,24 @@
 //}
 
 const dbDetails = {
-  "username": "laci",
+  "test": {
+    "username": "laci",
     "password": "lacika",
     "database": "laci",
     "host": "localhost",
     "dialect": "postgres"
-}
+  },
+  "development": {
+    "username": "laci",
+    "password": "lacika",
+    "database": "laci",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
 
-module.exports = {
-  development: dbDetails,
 }
+//
+// module.exports = {
+//   development: dbDetails,
+// }
+module.exports = dbDetails;

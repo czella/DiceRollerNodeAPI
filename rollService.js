@@ -10,9 +10,9 @@ const roll = unit => {
   };
 
   for (let i = 0; i < unit.count; i++) {
-    const roll = Math.floor(Math.random() * 11);
+    const roll = Math.floor(Math.random() * 10) + 1;
     result.rolls.push(roll);
-    if (roll + unit.modifier >= unit.combat || roll === result.diceSides) {
+    if (Number(roll) + Number(unit.modifier) >= Number(unit.combat) || roll === Number(result.diceSides)) {
       result.hits++;
     }
   }
