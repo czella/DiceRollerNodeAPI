@@ -8,5 +8,5 @@ const getCombinedRoll = (request, response) => {
 };
 
 module.exports = {
-  getCombinedRoll: getCombinedRoll,
+  getCombinedRoll,
 }

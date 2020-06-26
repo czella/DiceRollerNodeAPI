@@ -7,5 +7,5 @@ const getUnitTypes = async (request, response) => {
 };
 
 module.exports = {
-  getUnitTypes: getUnitTypes,
+  getUnitTypes,
 };

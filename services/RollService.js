@@ -35,5 +35,5 @@ class RollService {
 }
 
 module.exports = {
-  RollService: RollService,
+  RollService,
 }

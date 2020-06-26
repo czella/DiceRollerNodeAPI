@@ -55,5 +55,5 @@ const unitTests = () => {
 };
 
 module.exports = {
-  unitTests: unitTests,
+  unitTests,
 };

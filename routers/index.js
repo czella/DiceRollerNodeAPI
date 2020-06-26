@@ -12,7 +12,7 @@ const getRoutes = (app, jwtCheck) => {
   // app.use(jwtCheck);
   app.get('/units', unitController.getUnits);
 
-  app.post('/getResult/combined', rollController.getCombinedRoll);
+  app.post('/roll/combined', rollController.getCombinedRoll);
 };
 
 module.exports = {

@@ -7,5 +7,5 @@ const getUnits = async (request, response) => {
 };
 
 module.exports = {
-  getUnits: getUnits,
+  getUnits,
 };

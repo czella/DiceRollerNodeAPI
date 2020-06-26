@@ -43,7 +43,7 @@ const end2EndTest = () => {
   describe('/POST roll/combined', () => {
     it('result of roll should have the same length', (done) => {
       chai.request(server)
-        .post('/getResult/combined')
+        .post('/roll/combined')
         .send(testUnits)
         .end((err, res) => {
           res.should.have.status(200);
@@ -57,7 +57,7 @@ const end2EndTest = () => {
   describe('/POST roll/combined', () => {
     it('result of roll should be between 1 and 10', (done) => {
       chai.request(server)
-        .post('/getResult/combined')
+        .post('/roll/combined')
         .send(testUnits)
         .end((err, res) => {
           res.should.have.status(200);
@@ -70,5 +70,5 @@ const end2EndTest = () => {
 };
 
 module.exports = {
-  end2EndTest: end2EndTest,
+  end2EndTest,
 };
