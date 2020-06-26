@@ -21,9 +21,10 @@
     "sequelize": "^5.21.13"
   },
   "devDependencies": {
-    "sequelize-cli": "^5.5.1",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "sequelize-cli": "^5.5.1",
+    "sinon": "^9.0.2"
   }
 }
