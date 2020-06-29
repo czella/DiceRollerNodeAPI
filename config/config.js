@@ -26,7 +26,7 @@ const dbDetails = {
   "test": {
     "username": "laci",
     "password": "lacika",
-    "database": "laci",
+    "database": "dicerollertest",
     "host": "localhost",
     "dialect": "postgres"
   },

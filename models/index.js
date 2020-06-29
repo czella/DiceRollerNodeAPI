@@ -1,15 +1,18 @@
 'use strict'
 
+require('dotenv').config();
 var fs = require('fs')
 var path = require('path')
 var Sequelize = require('sequelize')
 var basename = path.basename(__filename)
+console.log(process.env.NODE_ENV, 'PROCESS....index.-------------');
 var env = process.env.NODE_ENV || 'development'
 var config = require(__dirname + '/../config/config.js')[env]
 var db = {}
 var sequelize
-
+console.log(env, '-.............env................');
 if (config.use_env_variable) {
+  console.log(config.use_env_variable, '--------------------------------useenv--------------------');
   sequelize = new Sequelize(process.env[config.use_env_variable])
 } else {
   sequelize = new Sequelize(

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000",
+    "test": "NODE_ENV=test npx sequelize-cli db:migrate && mocha --timeout 10000",
     "start": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && node index.js"
   },
   "keywords": [],

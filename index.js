@@ -7,7 +7,6 @@ const jwks = require('jwks-rsa');
 const {getRoutes} = require('./routers/index');
 const app = express();
 const port = 8080;
-
 const jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,
